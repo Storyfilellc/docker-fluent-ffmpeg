@@ -1,33 +1,9 @@
-FROM ampervue/ffmpeg
+FROM jrottenberg/ffmpeg:3.4
 
-# https://github.com/ampervue/docker-fluent-ffmpeg
-# https://hub.docker.com/r/dkarchmervue/fluent-ffmpeg/
-
-
-MAINTAINER David Karchmer <dkarchmer@ampervue.com>
-
-#####################################################################
-#
-# A Docker image with everything needed to run Moviepy scripts
-# 
-# Image based on ampervue/ffmpeg (Ubuntu 14.04)
-#
-#   with
-#     - Latest Python 3.4
-#     - Latest FFMPEG (built)
-#     - NodeJS
-#     - fluent-ffmpeg
-#
-#   For more on Fluent-FFMPEG, see 
-#
-#            https://github.com/fluent-ffmpeg/node-fluent-ffmpeg
-#
-#   plus a bunch of build/web essentials
-#
-#####################################################################
+RUN apt-get update -qq && apt-get install -y curl 
 
 # Add the following two dependencies for nodejs
-RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get update -qq && apt-get install -y --force-yes \
     nodejs; \
     apt-get clean
